@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+       
+    <context:component-scan base-package="com.sist.cbox.controller, com.sist.cbox.dao"></context:component-scan>
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    	<property name="messageConverters">
+    		<list>
+    			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+    				<property name="supportedMediaTypes">
+    					<list>
+    						<value>text/plain;charset=UTF-8</value>
+    					</list>
+    				</property>
+    			</bean>
+    		</list>
+    	</property>
+    </bean>
+    
+    <bean name="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+    	<property name="url" value="jdbc:oracle:thin:@211.238.142.126:1521:orcl"></property>
+    	<property name="username" value="CHARLIE"></property>
+    	<property name="password" value="111111"></property>
+    </bean>
+    <bean  name="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="ds"></property>
+    	<property name="mapperLocations" value="classpath:com/sist/cbox/dao/mapper/*.xml"> </property>
+    </bean>
+    
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	 	 <constructor-arg index="0" ref="SqlSessionFactory" />
+	</bean>
+	
+	<bean name="GiftyconDAO" class="com.sist.cbox.dao.GiftyconDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="GiftyconAccountDAO" class="com.sist.cbox.dao.GiftyconAccountDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="CardDAO" class="com.sist.cbox.dao.CardDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="MemberDAO" class="com.sist.cbox.dao.MemberDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+    <bean name="NonmemberDAO" class="com.sist.cbox.dao.NonmemberDAOService">
+        <property name="sqlSession" ref="sqlSession"></property>
+    </bean> 
+    <bean name="GpaDAO" class="com.sist.cbox.dao.GpaDAOService">
+        <property name="sqlSession" ref="sqlSession"></property>
+     </bean>
+     <bean name="MovieDAO" class="com.sist.cbox.dao.MovieDAOService">
+        <property name="sqlSession" ref="sqlSession"></property>
+     </bean>
+     <bean name="ReviewDAO" class="com.sist.cbox.dao.ReviewDAOService">
+        <property name="sqlSession" ref="sqlSession"></property>
+     </bean>
+     <bean name="TheaterDAOService" class="com.sist.cbox.dao.TheaterDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="TimetableDAOService" class="com.sist.cbox.dao.TimetableDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="seatAccountDAO" class="com.sist.cbox.dao.SeatAccountDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="SeatDAOService" class="com.sist.cbox.dao.SeatDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="CouponAccountDAOService" class="com.sist.cbox.dao.CouponAccountDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="CouponDAOService" class="com.sist.cbox.dao.CouponDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="MembershipDAOService" class="com.sist.cbox.dao.MembershipDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean name="PointAccountDAOService" class="com.sist.cbox.dao.PointAccountDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean name="MovieDiaryDAOService" class="com.sist.cbox.dao.MovieDiaryDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean name="GradeDAOService" class="com.sist.cbox.dao.GradeDAOService">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+</beans>

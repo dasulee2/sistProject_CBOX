@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.cbox.dao.MembershipDAO">
+	<update id="updateMembership">
+		UPDATE MEMBERSHIP SET ACCPOINT=((SELECT ACCPOINT FROM MEMBERSHIP WHERE MID=#{param1})+${param2}), USABLEPOINT=(SELECT MAX(AMOUNT) FROM (SELECT * FROM POINTACCOUNT WHERE MID=#{param1} ORDER BY DEALNUM DESC) WHERE ROWNUM=1), GRADE=#{param3} WHERE MID=#{param1}
+	</update>
+	
+	<update id="upMembership">
+		UPDATE MEMBERSHIP SET ACCPOINT=((SELECT ACCPOINT FROM MEMBERSHIP WHERE MID=#{param1})+${param2}), USABLEPOINT=(SELECT MAX(AMOUNT) FROM (SELECT * FROM POINTACCOUNT WHERE MID=#{param1} ORDER BY DEALNUM DESC) WHERE ROWNUM=1) WHERE MID=#{param1}
+	</update>
+	
+	<!-- 현재 등급 -->
+	<select id="getGrade" resultType="String">
+		SELECT GRADE FROM MEMBERSHIP WHERE MID=#{mid}
+	</select>
+</mapper>

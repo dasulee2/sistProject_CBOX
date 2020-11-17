@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!--	
+	 	#{1} -> 1
+	 	#{SEA} -> 'SEA'  
+	 	${1} -> 1
+	 	${SEA} -> SEA
+ 	-->
+ 	
+  <mapper namespace="com.sist.cbox.dao.GiftyconAccountDAO">
+   
+  	<!-- 기프티콘 구매시 거래내역 추가 -->
+  	<insert id="addGiftyconAccount1">
+  		INSERT INTO GIFTYCONACCOUNT(DEALNUM, GIFTYCONCODE, MID, RECIPIENT, REGDATE, STATE, USEDDATE) 
+  		VALUES((select to_number(nvl2((max(to_number(dealnum))),max(to_number(dealnum))+1, 1)) from GIFTYCONACCOUNT),#{giftyconCode},#{mid},#{recipient},SYSDATE,'USABLE','N/A')
+  		<!-- INSERT INTO GIFTYCONACCOUNT(G_DEALNUM, GIFTYCONCODE, MID, RECIPIENT) 
+  		VALUES((select to_number(nvl2((max(to_number(dealnum))),max(to_number(dealnum))+1, 1),#{giftyconCode},#{mid},(select mid from member where phone=#{recipient})) -->
+  	</insert>  
+  	
+ 	<!--해당 회원의 거래내역 리턴  -->
+  	<select id="getGiftyconAccountMember" resultType="com.sist.cbox.vo.GiftyconAccount">
+  		SELECT * FROM GIFTYCONACCOUNT WHERE MID = #{mid}
+  	</select>
+  	<select id="gmovieAccount" resultType="com.sist.cbox.vo.GiftyconAccount">
+  		SELECT * FROM GIFTYCONACCOUNT GA INNER JOIN GIFTYCON G ON GA.GIFTYCONCODE=G.GIFTYCONCODE WHERE GA.MID=#{mid} AND GA.GIFTYCONCODE LIKE '%M%' AND GA.STATE LIKE 'USABLE'
+  	</select>
+  	
+  	<update id="upGiftyconAc">
+  		update giftyconaccount set state='USED', USEDDATE=SYSDATE WHERE DEALNUM=#{dealNum}
+  	</update>
+  	
+  	<select id="countGiftyconAc" resultType="Integer">
+        select COUNT(*) from giftyconaccount where mid=#{mid} and GIFTYCONCODE like '%M%'
+     </select>
+     
+     <select id="countCoupontAc" resultType="Integer">
+        select count(*) from giftyconaccount where recipient=#{mid} and state='USABLE' and giftyconcode not like '%M%' order by dealnum desc
+     </select>
+  </mapper>

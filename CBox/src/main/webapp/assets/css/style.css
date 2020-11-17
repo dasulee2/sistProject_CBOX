@@ -1,0 +1,190 @@
+/*--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+html, body{
+	font-size: 100%;
+    font-family: 'Overpass', sans-serif;
+    background: url(../images/banner.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+}
+h1,h2,h3,h4,h5,h6,p,a,select,button{
+	font-family: 'Overpass', sans-serif;
+	margin:0;
+}
+ul,label{
+	margin:0;
+	padding:0;
+}
+body a:hover,body a{
+	text-decoration:none;
+}
+/*-- main --*/
+.agileits_copyright{
+	text-align: center;
+}
+.agileits_copyright p{
+	font-size: 1em;
+    color:#fff;
+    line-height: 1.8em;
+    text-transform: capitalize;
+}
+.agileits_copyright p a {
+    color:#efd53b;
+    text-decoration: underline;
+}
+.agileits_copyright p a:hover{
+	color:#fff;
+}
+input[type="submit"],.agileits_copyright p a,a{
+	transition:.5s ease-in;
+	-webkit-transition:.5s ease-in;
+	-moz-transition:.5s ease-in;
+	-o-transition:.5s ease-in;
+	-ms-transition:.5s ease-in;
+}
+.main{
+	margin-left:20px;
+}
+.main h1{
+	text-align: center;
+    color: #fff;
+    font-size:3em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+	margin-bottom: .8em;
+}
+/*-- //main --*/
+.w3_agile_main_grids{
+	width:500px;
+}
+.agile_main_top_grid{
+	background:#efd53b;
+	height:200px;
+}
+.agileits_w3layouts_main_top_grid_left{
+	float:left;
+}
+.w3_agileits_main_top_grid_right{
+	float:left;
+}
+.w3_agileits_main_top_grid_right h3{
+	font-size:1.2em;
+	color:#917f15;
+}
+
+.wthree_total h2{
+	text-align: center;
+    font-size: 1.8em;
+    color: #212121;
+    text-transform: capitalize;
+	letter-spacing: 5px;
+}
+.wthree_total h2 span{
+	font-size: 1.8em;
+	vertical-align: middle;
+    padding-left: 0.5em;
+}
+.wthree_total h2 span i{
+	font-size:.3em;
+}
+.agileinfo_main_bottom_grid {
+    background: #fff;
+    min-height: 405px;
+}
+.agileits_w3layouts_tab2 input[type="email"],.agileits_w3layouts_tab2,.creditly-wrapper .form-control{
+    width: 95%;
+    padding: 15px 10px;
+    font-size: 14px;
+    color: #212121;
+   /*  background: #fff; */
+    border: 1px solid #e7e7e7;
+    margin-bottom: 25px;
+	outline:none;
+}
+.agileits_w3layouts_tab2 input[type="email"]:focus,.agileits_w3layouts_tab2 input[type="password"]:focus,.creditly-wrapper .form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+}
+.security-code,.number{
+	width:19% !important;
+}
+.agileits_w3layouts_tab2 input[type="submit"] {
+    display: block;
+    position: relative;
+    padding: 10px 0px;
+	width:30%;
+    letter-spacing: 3px;
+    background: #ef4a3b;
+    font-size: 1.2em;
+    color: #fff;
+    border:1px solid #ef4a3b;
+    outline: none;
+    text-transform: capitalize;
+	cursor:pointer;
+}
+.agileits_w3layouts_tab2 input[type="submit"]:hover{
+	background: #fff;
+    color: #212121;
+	border: 1px solid #e7e7e7;
+}
+.w3_agileits_card_number_grid_left{
+	float:left;
+}
+.w3_agileits_card_number_grid_left,.w3_agileits_card_number_grid_right{
+	width:47%;
+}
+.w3_agileits_card_number_grid_right{
+	float:right;
+}
+.agileits_w3layouts_tab2 h3 {
+    font-size: 1em;
+    color: #212121;
+
+    text-transform: capitalize;
+}
+.agileits_w3layouts_tab2 h3 a{
+	color:#ef4a3b;
+	text-decoration:underline;
+}
+.agileits_w3layouts_tab2 h3 a:hover{
+	color:#212121;
+}
+.agileits_label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #212121;
+    font-size: 1em;
+}
+

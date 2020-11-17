@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.cbox.dao.GradeDAO">
+	<!-- 목표등급과 포인트 -->
+	<select id="nextGrade" resultType="com.sist.cbox.vo.Grade">
+		SELECT GRADENAME, REQPOINT FROM GRADE WHERE GRADENUM = (SELECT GRADENUM FROM GRADE WHERE GRADENAME=(SELECT GRADE FROM MEMBERSHIP WHERE MID=#{mid}))+1
+	</select>
+	
+	
+</mapper>

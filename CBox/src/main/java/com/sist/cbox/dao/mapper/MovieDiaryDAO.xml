@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.cbox.dao.MovieDiaryDAO">
+	
+	
+	<select id="allDiary" resultType="com.sist.cbox.vo.MovieDiary">
+		SELECT * FROM MOVIEDIARY WHERE MID=#{mid}
+	</select>
+
+
+	<insert id="addDiary">
+		INSERT INTO MOVIEDIARY(MDSEQ,MCODE,MID,CONTENT,IMAGE,FRIEND,MDTIME,THEATER,MOVIENM,MOVIENMEN) VALUES ((SELECT NVL(MAX(TO_NUMBER(MDSEQ)),0)+1 FROM MOVIEDIARY),#{mcode},#{mid},#{content},#{image},#{friend,jdbcType=VARCHAR},#{mdtime},#{theater},#{movieNm},#{movieNmEn})
+	</insert>
+
+	<select id="checkDiary" resultType="java.lang.String">
+		SELECT DISTINCT MCODE FROM MOVIEDIARY
+	</select>
+
+
+	<delete id="deleteDiary">
+		DELETE MOVIEDIARY WHERE MDSEQ=#{mdseq}
+	</delete>
+
+	<select id="getDiary" resultType="com.sist.cbox.vo.MovieDiary">
+		SELECT * FROM MOVIEDIARY WHERE MDSEQ=#{mdseq}
+	</select>
+	
+	<select id="myDiary" resultType="com.sist.cbox.vo.MovieDiary">
+		SELECT * FROM MOVIEDIARY WHERE MID=#{param1} AND MCODE=#{param2}
+	</select>	
+	
+	<select id="diaryDetail" resultType="java.lang.String">
+		SELECT MDSEQ FROM MOVIEDIARY WHERE MID=#{param1} AND MCODE=#{param2}
+	</select>
+	
+	<update id="updateDiary">
+			UPDATE MOVIEDIARY SET content=#{content}, friend=#{friend} WHERE MDSEQ=#{mdseq}
+	</update>
+
+
+</mapper>

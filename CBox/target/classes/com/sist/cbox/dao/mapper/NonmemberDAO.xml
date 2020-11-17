@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.cbox.dao.NonmemberDAO">
+	<select id="gNonmember" resultType="com.sist.cbox.vo.Nonmember">
+		SELECT * FROM NONMEMBER
+	</select>
+	
+	<select id="getNonMember" resultType="com.sist.cbox.vo.Nonmember">
+		SELECT * FROM NONMEMBER WHERE NMID=#{nmid}
+	</select>
+	
+	<insert id="addNonMember">
+		<selectKey keyProperty="nmid" resultType="String" order="BEFORE">
+			SELECT NVL(MAX(TO_NUMBER(NMID)),0)+1 FROM NONMEMBER
+		</selectKey>
+		INSERT INTO NONMEMBER VALUES (#{nmid}, #{name}, #{phone}, #{gender}, #{birthday}, #{pwd})
+	</insert>
+	
+</mapper>

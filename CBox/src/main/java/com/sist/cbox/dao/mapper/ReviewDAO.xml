@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.cbox.dao.ReviewDAO">
+
+
+	<insert id="addReview">
+		INSERT INTO REVIEW (RSEQ, MID, CONTENT, TITLE, REPLY, GPA, MCODE,REGDATE) 
+		VALUES ((SELECT NVL(MAX(TO_NUMBER(RSEQ)),0)+1 FROM REVIEW), #{mid}, #{content}, #{title}, #{reply,jdbcType=VARCHAR}, #{GPA}, #{mcode},SYSDATE)
+	</insert>     
+
+	<select id="myReview" resultType="com.sist.cbox.vo.Review">
+			SELECT * FROM REVIEW WHERE MID=#{mid}
+	</select>
+
+	<select id="getReview" resultType="com.sist.cbox.vo.Review">
+	
+		SELECT * FROM REVIEW WHERE RSEQ=#{rseq} ORDER BY TO_NUMBER(RSEQ) DESC
+				
+	</select>
+	
+	<update id="updateReview">
+	
+		UPDATE REVIEW SET TITLE=#{title}, CONTENT=#{content}, REPLY=#{reply,jdbcType=VARCHAR}, GPA=#{GPA}, MCODE=#{mcode} WHERE RSEQ=#{rseq}
+				
+	</update>
+	
+	<select id="getSeqCount" resultType="int">
+	
+		SELECT COUNT(RSEQ) FROM REVIEW WHERE MCODE=#{mcode}
+				
+	</select>
+
+	<delete id="deleteReview">
+		DELETE REVIEW WHERE RSEQ=#{rseq}
+	</delete>
+
+	<select id="allReview" resultType="com.sist.cbox.vo.Review">
+	
+		SELECT * FROM (SELECT ROWNUM AS RN, N.* FROM (SELECT * FROM REVIEW WHERE MCODE=#{param2} ORDER BY TO_NUMBER(RSEQ) DESC)N) 
+		WHERE RN BETWEEN (1+(#{param1}-1)*5) AND (1+(#{param1}-1)*5)+4
+			
+				
+	</select>
+
+</mapper>

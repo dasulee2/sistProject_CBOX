@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!--	
+	 	#{1} -> 1
+	 	#{SEA} -> 'SEA'  
+	 	${1} -> 1
+	 	${SEA} -> SEA
+ 	-->
+  <mapper namespace="com.sist.cbox.dao.CardDAO">
+  	
+  	
+  	<!-- 해당번호로 등록되어있는 카드 리턴 -->
+  	<select id="getCard" resultType="com.sist.cbox.vo.Card">
+  		SELECT * FROM CARD WHERE CARDNUM = #{cardNum,jdbcType=VARCHAR}
+  	</select>
+  	<!-- 해당번호로 등록되어있는 카드 리턴 -->
+  	<insert id="addCard">
+  		INSERT INTO CARD(CARDNUM,MID,PWD) VALUES(#{cardNum},#{mid},#{pwd})
+  	</insert>
+  
+  </mapper>

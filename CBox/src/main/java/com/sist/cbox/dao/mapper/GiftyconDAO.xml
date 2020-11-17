@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!--	
+	 	#{1} -> 1
+	 	#{SEA} -> 'SEA'  
+	 	${1} -> 1
+	 	${SEA} -> SEA
+ 	-->
+ 	
+  <mapper namespace="com.sist.cbox.dao.GiftyconDAO">
+  	
+  	<!--타입별 상품 리턴 (type: C-콤보  S-스낵  B-음료  M-영화관람권)  -->
+  	<select id="getGiftycons" resultType="com.sist.cbox.vo.Giftycon">
+  		<!-- SELECT * FROM GIFTYCON WHERE GIFTYCONCODE LIKE '%${giftyconCode}%' -->
+  		SELECT * FROM GIFTYCON WHERE GIFTYCONCODE LIKE '%' || #{type} || '%' 
+  	</select>
+  
+  	<!--코드와 일치하는 상품 리턴 -->
+  	<select id="getGiftycon" resultType="com.sist.cbox.vo.Giftycon">
+  		SELECT * FROM GIFTYCON WHERE GIFTYCONCODE = #{giftyconCode}
+  	</select>
+  	
+  </mapper>

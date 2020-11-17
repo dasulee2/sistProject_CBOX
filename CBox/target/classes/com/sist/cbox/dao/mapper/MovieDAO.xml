@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.cbox.dao.MovieDAO">
+	
+	
+	<select id="getMovie" resultType="com.sist.cbox.vo.Movie">
+		SELECT * FROM MOVIE WHERE MCODE=#{mcode}
+	</select>
+	
+	<select id="allMovie" resultType="com.sist.cbox.vo.Movie">
+		SELECT * FROM MOVIE
+	</select>
+
+	<select id="searchMovie_GPA" resultType="com.sist.cbox.vo.Movie">
+		SELECT * FROM MOVIE ORDER BY GPA ASC
+	</select>	
+	
+<!-- 	<select id="searchMovie_RATE" resultType="com.sist.web.vo.Movie">
+		SELECT * FROM MOVIE WHERE WATCHGRADENM=#{watchGradeNm}
+	</select> -->
+	
+	<select id="searchMovie_RELEASE" resultType="com.sist.cbox.vo.Movie">
+		SELECT * FROM MOVIE ORDER BY RELEASE ASC
+	</select>
+
+	<select id="currentMovie" resultType="String">
+		SELECT DISTINCT mcode FROM timetable
+	</select>
+
+	<update id="updateMovie">
+		UPDATE MOVIE SET GPA=#{GPA,jdbcType=VARCHAR} WHERE MCODE=#{mcode,jdbcType=VARCHAR}
+	</update>
+
+	<insert id="addMovie">
+		<!-- INSERT INTO MOVIE(IMAGE,MCODE,SUMMARY,GPA) VALUES #{image,jdbcType=VARCHAR}, #{mcode,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{GPA,jdbcType=VARCHAR} -->
+		INSERT INTO MOVIE(IMAGE,MCODE,SUMMARY,GPA) VALUES (#{image,jdbcType=VARCHAR}, #{mcode,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{GPA,jdbcType=VARCHAR})
+	</insert>
+
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.cbox.dao.CouponAccountDAO">
+	<select id="getusable" resultType="com.sist.cbox.vo.CouponAccount">
+		SELECT * FROM COUPONACCOUNT CA INNER JOIN COUPON C ON CA.COUPONCODE=C.COUPONCODE WHERE CA.MID=#{mid} AND CA.STATE LIKE 'USABLE'
+	</select>
+	
+	<insert id="addCouponAc">
+		INSERT INTO COUPONACCOUNT VALUES((SELECT NVL(MAX(TO_NUMBER(DEALNUM)),0)+1 FROM COUPONACCOUNT), #{mid}, #{couponCode}, SYSDATE, #{cancelCheck}, SYSDATE+365, #{content}, #{state}, #{usedDate})
+	</insert>
+	
+	<update id="updateCouponAc">
+		update couponaccount set state='USED', USEDDATE=SYSDATE WHERE DEALNUM=#{dealNum}
+	</update>
+</mapper>

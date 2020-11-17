@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <!--	
+	 	#{1} -> 1
+	 	#{SEA} -> 'SEA'  
+	 	${1} -> 1
+	 	${SEA} -> SEA
+ 	-->
+ 	
+  <mapper namespace="com.sist.cbox.dao.MemberDAO">
+ 	<select id="getPhone" resultType="com.sist.cbox.vo.Member">
+ 		SELECT * FROM MEMBER WHERE PHONE=#{phone}
+ 	</select>
+ 	<select id="gMember" resultType="com.sist.cbox.vo.Member">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="getMember" resultType="com.sist.cbox.vo.Member">
+		SELECT * FROM MEMBER WHERE MID=#{mid}
+	</select>
+	
+	<select id="idFind"  resultType="String">
+		SELECT MID FROM MEMBER WHERE NAME=#{param1} AND PHONE=#{param2}
+	</select>
+	
+	<update id="rePwd">
+		UPDATE MEMBER SET PWD=#{param1} WHERE MID=#{param2}
+	</update>
+	
+	<insert id="addMember">
+		INSERT INTO MEMBER VALUES (#{mid}, #{pwd}, #{name}, #{phone}, #{gender}, #{birthday})
+	</insert>
+	
+	<update id="updateMember">
+		UPDATE MEMBER SET PWD=#{pwd}, PHONE=#{phone} WHERE MID=#{mid}
+	</update>
+	
+	<delete id="delMember">
+		DELETE MEMBER WHERE MID=#{mid}
+	</delete>
+  </mapper>
+  
+  

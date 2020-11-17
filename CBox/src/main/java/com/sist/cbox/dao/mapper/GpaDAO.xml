@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.cbox.dao.GpaDAO">
+
+	<select id="getGpa" resultType="com.sist.cbox.vo.Gpa">
+		SELECT * FROM GPA WHERE MCODE=#{mcode,jdbcType=VARCHAR}
+	</select>
+
+
+	<insert id="addGpa">
+			INSERT INTO GPA(tn,average,mcode) VALUES (#{tn}, #{average}, #{mcode,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateGpa">
+	
+		UPDATE GPA SET TN=#{tn}, AVERAGE=#{average} WHERE MCODE=#{mcode,jdbcType=VARCHAR}
+				
+	</update>
+
+</mapper>

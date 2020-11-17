@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.cbox.dao.PointAccountDAO">
+	<select id="getDate" resultType="String">
+		select regdate from pointaccount where regdate=#{param1} and sort=#{param2} and mid=#{param3}
+	</select>
+	
+	<insert id="addPointAc">
+		INSERT INTO POINTACCOUNT VALUES ((SELECT NVL(MAX(TO_NUMBER(DEALNUM)),0)+1 FROM POINTACCOUNT), #{mid}, #{point}, NVL((SELECT MAX(AMOUNT) FROM (SELECT * FROM POINTACCOUNT WHERE MID=#{mid} ORDER BY TO_NUMBER(DEALNUM) DESC) WHERE ROWNUM=1),0)+#{point}, SYSDATE, #{sort})
+	</insert>
+	
+	<select id="getPoint" resultType="Integer">
+		SELECT MAX(AMOUNT) FROM (SELECT * FROM POINTACCOUNT WHERE MID=#{mid} ORDER BY TO_NUMBER(DEALNUM) DESC) WHERE ROWNUM=1
+	</select>
+</mapper>
